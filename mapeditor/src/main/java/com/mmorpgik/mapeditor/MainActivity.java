@@ -82,6 +82,7 @@ public class MainActivity extends Activity implements MapView.Listener {
 
         addBtn(bar, "+ Bölge", v -> addRegion());
         addBtn(bar, "Düzenle", v -> editRegion());
+        addBtn(bar, "3D aç", v -> open3d());
         addBtn(bar, "Renk", v -> pickColor());
         connectBtn = addBtn(bar, "Yol", v -> { mv.setConnectMode(!mv.connectMode); connectBtn.setText(mv.connectMode ? "Yol: AÇIK" : "Yol"); });
         addBtn(bar, "Sil", v -> deleteRegion());
@@ -185,6 +186,16 @@ public class MainActivity extends Activity implements MapView.Listener {
                 mv.invalidate();
                 save();
             }).setNegativeButton("İptal", null).show();
+    }
+
+    private void open3d() {
+        MapData.Region g = mv.selectedRegion();
+        if (g == null) { toast("Önce bir bölge seç"); return; }
+        Intent i = new Intent(this, RegionActivity.class);
+        i.putExtra("id", g.id);
+        i.putExtra("type", g.type);
+        i.putExtra("name", g.name);
+        startActivity(i);
     }
 
     private EditText field(LinearLayout l, String label, String val, boolean number) {
