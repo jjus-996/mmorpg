@@ -1,0 +1,24 @@
+plugins {
+    id 'com.android.application'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+android {
+    namespace 'com.mmorpgik.mapeditor'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.mmorpgik.mapeditor"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "0.1"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
